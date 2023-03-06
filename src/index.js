@@ -1,17 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// importing styles
+import './index.css'
+import Header from './components/Header';
+import Mission from './components/mission';
+import Quote from './components/quote';
+import QuickFacts from './components/quick_facts';
+import JSON from './data.json'
+import Announcements from './components/announcements';
+import Footer from './components/footer';
+// import Content from './components/Content';
+// import ClassTest from './components/classtest';
+// import StateDemo from './components/StateDemo';
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+class App extends Component {
+
+  state = {
+    infos: JSON
+  }
+  render() {
+    return (
+      <div>
+        <Header />
+        <Mission/>
+        <Quote/>
+        <QuickFacts infos={this.state.infos}/>
+        <Announcements/>
+        <Footer/>
+      </div>
+    )
+  }
+}
+
+// create a root object for the index.html's div root
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// render the app component on the root object
+root.render(<App/>)
